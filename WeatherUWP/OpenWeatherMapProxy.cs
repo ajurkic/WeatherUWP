@@ -16,7 +16,7 @@ namespace WeatherUWP
         {
             var http = new HttpClient();
             //TODO: city name to id=3190261
-            var response = await http.GetAsync("http://api.openweathermap.org/data/2.5/forecast?id=3190261&APPID=55532f27884ec31a83b68105ff4deb0f");
+            var response = await http.GetAsync("http://api.openweathermap.org/data/2.5/forecast?q=" +city+ "&APPID=55532f27884ec31a83b68105ff4deb0f&units=metric");
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(RootObject));
 
