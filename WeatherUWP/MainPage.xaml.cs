@@ -26,5 +26,12 @@ namespace WeatherUWP
         {
             this.InitializeComponent();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RootObject myWeather = await OpenWeatherMapProxy.GetWeather("Split");
+
+            ResultTextBox.Text = myWeather.city + " - " + myWeather;
+        }
     }
 }

@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="Honeydew">
+        <Button Content="Get Weather" Click="Button_Click" Height="135" Width="256"/>
+        <TextBlock x:Name="ResultTextBox" Height="206"/>
 
-    </Grid>
+    </StackPanel>
 </Page>
