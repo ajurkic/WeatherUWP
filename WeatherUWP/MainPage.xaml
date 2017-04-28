@@ -7,9 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Background="Honeydew">
-        <Button Content="Get Weather" Click="Button_Click" Height="135" Width="256"/>
-        <TextBlock x:Name="ResultTextBox" Height="206"/>
-
-    </StackPanel>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <AutoSuggestBox Margin="474,163,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="56,29,0,0" TextWrapping="Wrap" Text="Weather" VerticalAlignment="Top" FontSize="70" FontWeight="Bold"/>
+        <TextBlock x:Name="ResultTextBox" HorizontalAlignment="Left" Margin="213,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="24" Width="306" Height="300"/>
+        <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="200" Margin="826,367,0,0" VerticalAlignment="Top" Width="200"/>
+    </Grid>
 </Page>
