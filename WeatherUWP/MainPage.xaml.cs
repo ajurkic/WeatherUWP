@@ -28,49 +28,43 @@ namespace WeatherUWP
             this.InitializeComponent();
         }
 
-        /*private async void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        private async void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            RootObject myWeather = await OpenWeatherMapProxy.GetWeather("Split");
-            if (myWeather.city != null)
+            /*if(nestoReason == AutoSuggestionBoxTextChangeReason.UserInput) //doradit ovo s args
             {
-                ResultTextBox.Text = myWeather.city.name + ", " + myWeather.list[0].weather[0].description +
-                                        "\nTemp.: " + myWeather.list[0].main.temp + " °C" +
-                                        "\nWind speed: " + myWeather.list[0].wind.speed + " m/s" +
-                                        "\nPressure: " + myWeather.list[0].main.pressure + " hPa" +
-                                        "\nMin. temp: " + myWeather.list[0].main.temp_min + " °C" +
-                                        "\nMax. temp: " + myWeather.list[0].main.temp_max + " °C" +
-                                        "\nCloudiness: " + myWeather.list[0].clouds.all + " %";
+                
+                ako se promjenija input
+                    pogledat jel postoji grad unutar city.list.json filea
 
-                string icon = String.Format("http://openweathermap.org/img/w/{0}.png", myWeather.list[0].weather[0].icon);
-                ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
-            }
-            else
-            {
-                ResultTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
-            }
-        }*/
+                KAKO BRZO PROVJERIT SVE GRADOVE A DA NE ZAUZMEN PREVIŠE MEMORIJE???
+
+                
+            }*/
+        }
 
         private async void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if(args.QueryText != "")
             {
                 RootObject myWeather = await OpenWeatherMapProxy.GetWeather(args.QueryText);
+
                 if (myWeather.city != null)
                 {
-                    ResultTextBox.Text = myWeather.city.name + ", " + myWeather.list[0].weather[0].description +
-                                            "\nTemp.: " + myWeather.list[0].main.temp + " °C" +
-                                            "\nWind speed: " + myWeather.list[0].wind.speed + " m/s" +
-                                            "\nPressure: " + myWeather.list[0].main.pressure + " hPa" +
-                                            "\nMin. temp: " + myWeather.list[0].main.temp_min + " °C" +
-                                            "\nMax. temp: " + myWeather.list[0].main.temp_max + " °C" +
-                                            "\nCloudiness: " + myWeather.list[0].clouds.all + " %";
+                    TemperatureTextBox.Text = myWeather.list[0].main.temp.ToString();
+                    MinTextBox.Text = myWeather.list[0].main.temp_min.ToString();
+                    MaxTextBox.Text = myWeather.list[0].main.temp_max.ToString();
+                    WindTextBox.Text = myWeather.list[0].wind.speed + " m/s";
+                    HumidityTextBox.Text = myWeather.list[0].main.humidity.ToString();
+                    CloudinessTextBox.Text = myWeather.list[0].clouds.all + " %";
+                    PressureTextBox.Text = myWeather.list[0].main.pressure + " hPa";
+                    DescriptionTextBox.Text = myWeather.list[0].weather[0].description;
 
                     string icon = String.Format("ms-appx:///Assets/WeatherIcons/{0}.png", myWeather.list[0].weather[0].icon);
                     ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
                 }
                 else
                 {
-                    ResultTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
+                    TemperatureTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
                 }
             }
         }

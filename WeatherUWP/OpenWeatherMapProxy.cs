@@ -10,12 +10,16 @@ using System.Threading.Tasks;
 
 namespace WeatherUWP
 {
+
+    //nać to da mi api vrati listu gradova koji počinju s određenim stringom
+    //flow layout uwp
+    //čitat samo id i name, a ne sve
+
     class OpenWeatherMapProxy
     {
         public async static Task<RootObject> GetWeather(string city)
         {
             var http = new HttpClient();
-            //TODO: city name to id=3190261
             var response = await http.GetAsync("http://api.openweathermap.org/data/2.5/forecast?q=" +city+ "&APPID=55532f27884ec31a83b68105ff4deb0f&units=metric");
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(RootObject));
@@ -73,16 +77,6 @@ namespace WeatherUWP
         [DataMember]
         public double deg { get; set; }
     }
-
-    /*
-    [DataContract]
-    public class Rain
-    {
-        [DataMember]
-        public double? __invalid_name__3h { get; set; }
-    }
-    */
-
     [DataContract]
     public class Sys
     {

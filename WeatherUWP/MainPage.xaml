@@ -8,9 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <AutoSuggestBox Margin="474,163,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="56,29,0,0" TextWrapping="Wrap" Text="Weather" VerticalAlignment="Top" FontSize="70" FontWeight="Bold"/>
-        <TextBlock x:Name="ResultTextBox" HorizontalAlignment="Left" Margin="213,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="24" Width="306" Height="300"/>
-        <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="200" Margin="826,367,0,0" VerticalAlignment="Top" Width="200"/>
+        <AutoSuggestBox Margin="479,133,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        <TextBlock x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="38,10,0,0" TextWrapping="Wrap" Text="Weather" VerticalAlignment="Top" FontSize="70" FontWeight="Bold"/>
+        <TextBlock x:Name="TemperatureTextBox" HorizontalAlignment="Left" Margin="621,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="72" Width="186" Height="109" FontWeight="Bold"/>
+        <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="300" Margin="887,312,0,0" VerticalAlignment="Top" Width="300"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="83" Margin="38,205,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/wind.png"/>
+        <Image x:Name="image1" HorizontalAlignment="Left" Height="83" Margin="38,312,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/humidity.png"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="140" Margin="509,229,0,0" VerticalAlignment="Top" Width="93" Source="Assets/GUIIcons/temp.png"/>
+        <TextBlock x:Name="WindTextBox" HorizontalAlignment="Left" Margin="158,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="58" Width="159" FontSize="36"/>
+        <TextBlock x:Name="HumidityTextBox" HorizontalAlignment="Left" Margin="158,329,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="66" Width="126" FontSize="36"/>
+        <TextBlock x:Name="PressureTextBox" HorizontalAlignment="Left" Margin="374,558,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="75" Width="167" FontSize="30" TextAlignment="Center"/>
+        <TextBlock x:Name="CloudinessTextBox" HorizontalAlignment="Left" Margin="109,558,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="75" Width="128" FontSize="30" TextAlignment="Center"/>
+        <TextBlock x:Name="MinTextBox" HorizontalAlignment="Left" Margin="572,404,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="33" Width="75" TextAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="MaxTextBox" HorizontalAlignment="Left" Margin="708,404,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="28" Width="88" TextAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="86,505,0,0" TextWrapping="Wrap" Text="Cloudiness" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="387,505,0,0" TextWrapping="Wrap" Text="Pressure" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="887,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="36" Width="300" TextAlignment="Center" Height="107"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="526,398,0,0" TextWrapping="Wrap" Text="Min" VerticalAlignment="Top" Height="38" FontSize="24"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="663,398,0,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Top" Height="38" FontSize="24"/>
     </Grid>
 </Page>
