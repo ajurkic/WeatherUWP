@@ -18,53 +18,38 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WeatherUWP
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        private async void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            /*if(nestoReason == AutoSuggestionBoxTextChangeReason.UserInput) //doradit ovo s args
-            {
-                
-                ako se promjenija input
-                    pogledat jel postoji grad unutar city.list.json filea
-
-                KAKO BRZO PROVJERIT SVE GRADOVE A DA NE ZAUZMEN PREVIŠE MEMORIJE???
-
-                
-            }*/
-        }
-
         private async void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if(args.QueryText != "")
+            if (args.QueryText != "")
             {
                 RootObject myWeather = await OpenWeatherMapProxy.GetWeather(args.QueryText);
 
-                if (myWeather.city != null)
+                if (myWeather.current.condition.code != 400 || 
+                    myWeather.current.condition.code != 401 ||
+                    myWeather.current.condition.code != 403)
                 {
-                    TemperatureTextBox.Text = myWeather.list[0].main.temp.ToString();
-                    MinTextBox.Text = myWeather.list[0].main.temp_min.ToString();
-                    MaxTextBox.Text = myWeather.list[0].main.temp_max.ToString();
-                    WindTextBox.Text = myWeather.list[0].wind.speed + " m/s";
-                    HumidityTextBox.Text = myWeather.list[0].main.humidity.ToString();
-                    CloudinessTextBox.Text = myWeather.list[0].clouds.all + " %";
-                    PressureTextBox.Text = myWeather.list[0].main.pressure + " hPa";
-                    DescriptionTextBox.Text = myWeather.list[0].weather[0].description;
-
-                    string icon = String.Format("ms-appx:///Assets/WeatherIcons/{0}.png", myWeather.list[0].weather[0].icon);
+                    TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
+                    feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
+                    WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
+                    HumidityTextBox.Text = myWeather.current.humidity.ToString();
+                    CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
+                    PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
+                    DescriptionTextBox.Text = myWeather.current.condition.text;
+                    
+                    string icon = String.Format("http:{0}", myWeather.current.condition.icon);
                     ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
                 }
                 else
                 {
-                    TemperatureTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
+                    DescriptionTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
                 }
             }
         }
