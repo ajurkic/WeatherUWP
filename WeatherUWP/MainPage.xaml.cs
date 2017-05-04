@@ -20,7 +20,6 @@ namespace WeatherUWP
 {
     public sealed partial class MainPage : Page
     {
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -30,7 +29,7 @@ namespace WeatherUWP
         {
             if (args.QueryText != "")
             {
-                RootObject myWeather = await OpenWeatherMapProxy.GetWeather(args.QueryText);
+                RootObject myWeather = await WeatherAPI.GetWeather(args.QueryText);
 
                 if (myWeather.current.condition.code != 400 || 
                     myWeather.current.condition.code != 401 ||
@@ -51,6 +50,15 @@ namespace WeatherUWP
                 {
                     DescriptionTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
                 }
+            }
+        }
+
+        private async void autosuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if(args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                CityRootObject myCity = await CitySearchAPI.SearchCity(sender.Text);
+                sender.ItemsSource = myCity.ToString(); //Value does not fall within expected range! Stopped here <<<<
             }
         }
     }

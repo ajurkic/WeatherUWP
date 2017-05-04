@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <AutoSuggestBox x:Name="autosuggestBox" Margin="479,133,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        <AutoSuggestBox x:Name="autosuggestBox" Margin="479,133,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted" TextChanged="autosuggestBox_TextChanged"/>
         <TextBlock x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="38,10,0,0" TextWrapping="Wrap" Text="Weather" VerticalAlignment="Top" FontSize="70" FontWeight="Bold"/>
         <TextBlock x:Name="TemperatureTextBox" HorizontalAlignment="Left" Margin="621,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="80" Width="186" Height="109" FontWeight="Bold"/>
         <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="250" Margin="887,288,0,0" VerticalAlignment="Top" Width="250"/>

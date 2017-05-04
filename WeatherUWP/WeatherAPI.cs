@@ -10,12 +10,9 @@ using System.Threading.Tasks;
 
 namespace WeatherUWP
 {
-
-    //nać to da mi api vrati listu gradova koji počinju s određenim stringom
     //flow layout uwp
-    //čitat samo id i name, a ne sve
 
-    class OpenWeatherMapProxy
+    class WeatherAPI
     {
         public async static Task<RootObject> GetWeather(string city)
         {
