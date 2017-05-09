@@ -8,21 +8,26 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Grid_Loaded">
-        <AutoSuggestBox x:Name="autoSuggestBox" Margin="479,133,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted" TextChanged="autosuggestBox_TextChanged"/>
-        <TextBlock x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="38,10,0,0" TextWrapping="Wrap" Text="Weather" VerticalAlignment="Top" FontSize="70" FontWeight="Bold"/>
+        <AutoSuggestBox x:Name="autoSuggestBox" Margin="478,153,0,0" VerticalAlignment="Top" PlaceholderText="Choose city" Width="300" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted" TextChanged="AutoSuggestBox_TextChanged"/>
+        <TextBlock x:Name="TitleTextBox" HorizontalAlignment="Left" Margin="38,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="68" FontWeight="Bold" Width="740" Height="90" Text=""/>
         <TextBlock x:Name="TemperatureTextBox" HorizontalAlignment="Left" Margin="621,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="80" Width="186" Height="109" FontWeight="Bold"/>
-        <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="250" Margin="887,288,0,0" VerticalAlignment="Top" Width="250"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="83" Margin="38,205,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/wind.png"/>
-        <Image x:Name="image1" HorizontalAlignment="Left" Height="83" Margin="38,312,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/humidity.png"/>
+        <Image x:Name="ResultImage" HorizontalAlignment="Left" Height="250" Margin="887,339,0,0" VerticalAlignment="Top" Width="250"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="83" Margin="63,225,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/wind.png"/>
+        <Image x:Name="image1" HorizontalAlignment="Left" Height="83" Margin="63,332,0,0" VerticalAlignment="Top" Width="76" Source="Assets/GUIIcons/humidity.png"/>
         <Image x:Name="image2" HorizontalAlignment="Left" Height="140" Margin="509,229,0,0" VerticalAlignment="Top" Width="93" Source="Assets/GUIIcons/temp.png"/>
-        <TextBlock x:Name="WindTextBox" HorizontalAlignment="Left" Margin="158,214,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="58" Width="159" FontSize="36"/>
-        <TextBlock x:Name="HumidityTextBox" HorizontalAlignment="Left" Margin="158,329,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="66" Width="126" FontSize="36"/>
+        <TextBlock x:Name="WindTextBox" HorizontalAlignment="Left" Margin="183,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="58" Width="159" FontSize="36"/>
+        <TextBlock x:Name="HumidityTextBox" HorizontalAlignment="Left" Margin="183,349,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="66" Width="126" FontSize="36"/>
         <TextBlock x:Name="PressureTextBox" HorizontalAlignment="Left" Margin="374,558,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="75" Width="167" FontSize="30" TextAlignment="Center"/>
         <TextBlock x:Name="CloudinessTextBox" HorizontalAlignment="Left" Margin="109,558,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="75" Width="128" FontSize="30" TextAlignment="Center"/>
-        <TextBlock x:Name="feelsLikeTextBox" HorizontalAlignment="Left" Margin="615,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="39" Width="56" TextAlignment="Center" FontSize="24" FontStyle="Italic"/>
+        <TextBlock x:Name="feelsLikeTextBox" HorizontalAlignment="Left" Margin="632,400,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="39" Width="56" FontSize="24" FontStyle="Italic"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="86,505,0,0" TextWrapping="Wrap" Text="Cloudiness" VerticalAlignment="Top" FontSize="36"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="387,505,0,0" TextWrapping="Wrap" Text="Pressure" VerticalAlignment="Top" FontSize="36"/>
-        <TextBlock x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="887,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="36" Width="250" TextAlignment="Center" Height="83"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="509,398,0,0" TextWrapping="Wrap" Text="Feels like: " VerticalAlignment="Top" Height="39" FontSize="24" Width="106" FontStyle="Italic"/>
+        <TextBlock x:Name="DescriptionTextBox" HorizontalAlignment="Left" Margin="887,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="36" Width="250" TextAlignment="Center" Height="129"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="526,400,0,0" TextWrapping="Wrap" Text="Feels like: " VerticalAlignment="Top" Height="39" FontSize="24" Width="106" FontStyle="Italic"/>
+        <ProgressBar x:Name="CloudinessProgressBar" HorizontalAlignment="Left" Height="12" Margin="23.485,550.263,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" RequestedTheme="Light" Value="25">
+            <ProgressBar.RenderTransform>
+                <CompositeTransform Rotation="-90"/>
+            </ProgressBar.RenderTransform>
+        </ProgressBar>
     </Grid>
 </Page>

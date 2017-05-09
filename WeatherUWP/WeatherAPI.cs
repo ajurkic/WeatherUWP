@@ -16,19 +16,6 @@ namespace WeatherUWP
     {
         public async static Task<RootObject> GetWeather(string city)
         {
-            /*
-            var http = new HttpClient();
-            var response = await http.GetAsync("http://api.apixu.com/v1/current.json?key=e761b396dc064e60ab6132722170305&q=" + city);
-            var result = await response.Content.ReadAsStringAsync();
-            var serializer = new DataContractJsonSerializer(typeof(RootObject));
-
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
-
-            var data = (RootObject)serializer.ReadObject(ms);
-
-            return data;
-            */
-            
             string uri = "http://api.apixu.com/v1/current.json?key=e761b396dc064e60ab6132722170305&q=" + city;
             HttpClient http = new HttpClient();
             string response = await http.GetStringAsync(uri);
@@ -38,7 +25,8 @@ namespace WeatherUWP
             return cities;
         }
     }
-    
+
+    #region Current weather search class
     public class Location
     {
         public string name { get; set; }
@@ -50,14 +38,12 @@ namespace WeatherUWP
         public int localtime_epoch { get; set; }
         public string localtime { get; set; }
     }
-
     public class Condition
     {
         public string text { get; set; }
         public string icon { get; set; }
         public int code { get; set; }
     }
-    
     public class Current
     {
         public int last_updated_epoch { get; set; }
@@ -81,10 +67,23 @@ namespace WeatherUWP
         public double vis_km { get; set; }
         public double vis_miles { get; set; }
     }
-    
     public class RootObject
     {
         public Location location { get; set; } 
         public Current current { get; set; }
     }
+    #endregion
+
+    #region City autocomplete search class
+    public class CitySearchAPI
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string region { get; set; }
+        public string country { get; set; }
+        public double lat { get; set; }
+        public double lon { get; set; }
+        public string url { get; set; }
+    }
+    #endregion
 }

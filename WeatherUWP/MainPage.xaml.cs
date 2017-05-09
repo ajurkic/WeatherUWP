@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -39,11 +40,13 @@ namespace WeatherUWP
                     myWeather.current.condition.code != 401 ||
                     myWeather.current.condition.code != 403)
                 {
+                    TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
                     TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                     feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                     WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
                     HumidityTextBox.Text = myWeather.current.humidity.ToString();
                     CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
+                    CloudinessProgressBar.Value = myWeather.current.cloud;
                     PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
                     DescriptionTextBox.Text = myWeather.current.condition.text;
                     
@@ -57,7 +60,7 @@ namespace WeatherUWP
             }
         }
 
-        private async void autosuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private async void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if(args.Reason == AutoSuggestionBoxTextChangeReason.UserInput && sender.Text != "" && sender.Text != " ")
             {
@@ -94,11 +97,13 @@ namespace WeatherUWP
                 myWeather.current.condition.code != 401 ||
                 myWeather.current.condition.code != 403)
             {
+                TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
                 TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                 feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                 WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
                 HumidityTextBox.Text = myWeather.current.humidity.ToString();
                 CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
+                CloudinessProgressBar.Value = myWeather.current.cloud;
                 PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
                 DescriptionTextBox.Text = myWeather.current.condition.text;
 
