@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -24,6 +26,8 @@ namespace WeatherUWP
         {
             this.InitializeComponent();
         }
+
+        List<String> cityNames = new List<string>();
 
         private async void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
@@ -55,10 +59,55 @@ namespace WeatherUWP
 
         private async void autosuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            if(args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            if(args.Reason == AutoSuggestionBoxTextChangeReason.UserInput && sender.Text != "" && sender.Text != " ")
             {
-                CityRootObject myCity = await CitySearchAPI.SearchCity(sender.Text);
-                sender.ItemsSource = myCity.ToString(); //Value does not fall within expected range! Stopped here <<<<
+                cityNames.Clear();
+                string uri = "http://api.apixu.com/v1/search.json?key=e761b396dc064e60ab6132722170305&q=" + sender.Text;
+                HttpClient http = new HttpClient();
+                string response = await http.GetStringAsync(uri);
+                
+                var cities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CitySearchAPI>>(response);
+                
+                if (cities.Count() != 0)
+                {
+                    foreach (var city in cities)
+                    {
+                        cityNames.Add(city.name);
+                    }
+                    sender.ItemsSource = cityNames;
+                }
+                else
+                {
+                    sender.ItemsSource = new string[] { "City not found" };
+                }
+            }
+        }
+
+
+
+        //Pitat prof jel može kako drukčije?
+        private async void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            RootObject myWeather = await WeatherAPI.GetWeather("Split");
+            
+            if (myWeather.current.condition.code != 400 ||
+                myWeather.current.condition.code != 401 ||
+                myWeather.current.condition.code != 403)
+            {
+                TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
+                feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
+                WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
+                HumidityTextBox.Text = myWeather.current.humidity.ToString();
+                CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
+                PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
+                DescriptionTextBox.Text = myWeather.current.condition.text;
+
+                string icon = String.Format("http:{0}", myWeather.current.condition.icon);
+                ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
+            }
+            else
+            {
+                DescriptionTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
             }
         }
     }
