@@ -29,7 +29,7 @@ namespace WeatherUWP
         }
 
         List<String> cityNames = new List<string>();
-
+        
         private async void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.QueryText != "")
@@ -40,7 +40,7 @@ namespace WeatherUWP
                     myWeather.current.condition.code != 401 ||
                     myWeather.current.condition.code != 403)
                 {
-                    TitleTextBox.Text = String.Format("WeatherRootObject in {0}", myWeather.location.name);
+                    TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
                     TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                     feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                     WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
@@ -95,7 +95,7 @@ namespace WeatherUWP
                 myWeather.current.condition.code != 401 ||
                 myWeather.current.condition.code != 403)
             {
-                TitleTextBox.Text = String.Format("WeatherRootObject in {0}", myWeather.location.name);
+                TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
                 TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                 feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                 WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
