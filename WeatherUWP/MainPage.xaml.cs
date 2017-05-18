@@ -34,13 +34,13 @@ namespace WeatherUWP
         {
             if (args.QueryText != "")
             {
-                RootObject myWeather = await WeatherAPI.GetWeather(args.QueryText);
+                WeatherRootObject myWeather = await WeatherAPI.GetWeather(args.QueryText);
 
                 if (myWeather.current.condition.code != 400 || 
                     myWeather.current.condition.code != 401 ||
                     myWeather.current.condition.code != 403)
                 {
-                    TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
+                    TitleTextBox.Text = String.Format("WeatherRootObject in {0}", myWeather.location.name);
                     TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                     feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                     WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
@@ -59,7 +59,7 @@ namespace WeatherUWP
                 }
             }
         }
-
+        
         private async void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if(args.Reason == AutoSuggestionBoxTextChangeReason.UserInput && sender.Text != "" && sender.Text != " ")
@@ -69,7 +69,7 @@ namespace WeatherUWP
                 HttpClient http = new HttpClient();
                 string response = await http.GetStringAsync(uri);
                 
-                var cities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CitySearchAPI>>(response);
+                var cities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CityAutocompleteSearch>>(response);
                 
                 if (cities.Count() != 0)
                 {
@@ -85,19 +85,17 @@ namespace WeatherUWP
                 }
             }
         }
-
-
-
-        //Pitat prof jel može kako drukčije?
+        
+        //Gets the weather in Split after the window is loaded
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            RootObject myWeather = await WeatherAPI.GetWeather("Split");
+            WeatherRootObject myWeather = await WeatherAPI.GetWeather("Split");
             
             if (myWeather.current.condition.code != 400 ||
                 myWeather.current.condition.code != 401 ||
                 myWeather.current.condition.code != 403)
             {
-                TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
+                TitleTextBox.Text = String.Format("WeatherRootObject in {0}", myWeather.location.name);
                 TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
                 feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
                 WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";

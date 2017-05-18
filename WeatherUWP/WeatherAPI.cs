@@ -10,17 +10,15 @@ using System.Threading.Tasks;
 
 namespace WeatherUWP
 {
-    //flow layout uwp
-
     class WeatherAPI
     {
-        public async static Task<RootObject> GetWeather(string city)
+        public async static Task<WeatherRootObject> GetWeather(string city)
         {
             string uri = "http://api.apixu.com/v1/current.json?key=e761b396dc064e60ab6132722170305&q=" + city;
             HttpClient http = new HttpClient();
             string response = await http.GetStringAsync(uri);
 
-            var cities = Newtonsoft.Json.JsonConvert.DeserializeObject<RootObject>(response);
+            var cities = Newtonsoft.Json.JsonConvert.DeserializeObject<WeatherRootObject>(response);
 
             return cities;
         }
@@ -67,7 +65,7 @@ namespace WeatherUWP
         public double vis_km { get; set; }
         public double vis_miles { get; set; }
     }
-    public class RootObject
+    public class WeatherRootObject
     {
         public Location location { get; set; } 
         public Current current { get; set; }
@@ -75,7 +73,7 @@ namespace WeatherUWP
     #endregion
 
     #region City autocomplete search class
-    public class CitySearchAPI
+    public class CityAutocompleteSearch
     {
         public int id { get; set; }
         public string name { get; set; }
