@@ -32,31 +32,28 @@ namespace WeatherUWP
         
         private async void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if (args.QueryText != "")
-            {
-                WeatherRootObject myWeather = await WeatherAPI.GetWeather(args.QueryText);
+            WeatherRootObject myWeather = await WeatherAPI.GetWeather(args.QueryText);
 
-                if (myWeather.current.condition.code != 400 || 
-                    myWeather.current.condition.code != 401 ||
-                    myWeather.current.condition.code != 403)
-                {
-                    TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
-                    TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
-                    feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
-                    WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
-                    HumidityTextBox.Text = myWeather.current.humidity.ToString();
-                    CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
-                    CloudinessProgressBar.Value = myWeather.current.cloud;
-                    PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
-                    DescriptionTextBox.Text = myWeather.current.condition.text;
-                    
-                    string icon = String.Format("http:{0}", myWeather.current.condition.icon);
-                    ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
-                }
-                else
-                {
-                    DescriptionTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
-                }
+            if (myWeather.current.condition.code != 400 ||
+                myWeather.current.condition.code != 401 ||
+                myWeather.current.condition.code != 403)
+            {
+                TitleTextBox.Text = String.Format("Weather in {0}", myWeather.location.name);
+                TemperatureTextBox.Text = myWeather.current.temp_c.ToString();
+                feelsLikeTextBox.Text = myWeather.current.feelslike_c.ToString();
+                WindTextBox.Text = myWeather.current.wind_kph.ToString() + " km/h";
+                HumidityTextBox.Text = myWeather.current.humidity.ToString();
+                CloudinessTextBox.Text = myWeather.current.cloud.ToString() + " %";
+                CloudinessProgressBar.Value = myWeather.current.cloud;
+                PressureTextBox.Text = myWeather.current.pressure_mb + " hPa";
+                DescriptionTextBox.Text = myWeather.current.condition.text;
+
+                string icon = String.Format("http:{0}", myWeather.current.condition.icon);
+                ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
+            }
+            else
+            {
+                DescriptionTextBox.Text = "Error: Cannot get the forecast. Check your internet connection";
             }
         }
         
